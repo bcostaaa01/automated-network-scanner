@@ -1,0 +1,13 @@
+# Define the docker-compose services
+version: '3.7'
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+
+    ports:
+      - "80:80"
+    volumes:
+      - .:/app
+    command: ["python", "main.py"]
