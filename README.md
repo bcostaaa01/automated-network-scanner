@@ -1,6 +1,6 @@
 # 🚀 Network Speed Test API
 
-This is a FastAPI application that measures network speed and provides the results via an API.
+This is a FastAPI application that measures network speed and provides the results via an API. It contains a scheduler that runs every 10 minutes and measures the network speed. The results are stored in a log file at 23:59.
 
 ## 📚 API Documentation
 
@@ -32,6 +32,20 @@ uvicorn main:app --reload
 ```
 
 The application will be available at `http://localhost:8000`.
+
+## ❌ In case of errors with modules
+
+If you get an error like this:
+
+```bash
+    ModuleNotFoundError: No module named 'schedule'
+```
+
+You can install the module with the following command:
+
+```bash
+python3 -m pip install schedule
+```
 
 ## 📝 API Usage
 
