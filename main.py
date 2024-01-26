@@ -1,6 +1,8 @@
 # Main FastAPI application
 # --------------------------------------
+import os
 
+import schedule
 # Imports
 # --------------------------------------
 from fastapi import FastAPI
@@ -10,6 +12,8 @@ from datetime import datetime
 import xml.etree.ElementTree as ET
 
 from starlette.responses import FileResponse
+import os
+import schedule
 
 
 # --------------------------------------
@@ -53,6 +57,8 @@ def check_speed(file_url):
             speed = dl / 1024 / 1024 / (datetime.now() - start_time).total_seconds() * 8
             print(f"\r[{'=' * done}{' ' * (50 - done)}] {speed:.2f} MB/s", end='')
 
+    # Send notification
+    os.system(f"osascript -e 'display notification \"{speed:.2f} MB/s\" with title \"Network Speed\" subtitle \"Download Speed\" sound name \"Submarine\"'")
 
 def get_speed():
     # Check speed
@@ -100,3 +106,16 @@ async def speed_log():
 
     # Get speed log
     return get_speed(), 200
+
+
+# --------------------------------------
+# Scheduler
+# --------------------------------------
+def job():
+    """Scheduler job"""
+    # Record speed log
+    record_speed_log()
+
+
+schedule.every(10).minutes.do(job)
+schedule.every().day.at("23:59").do(job)

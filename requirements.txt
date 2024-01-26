@@ -4,3 +4,4 @@ pydantic~=2.5.3
 requests~=2.31.0
 supabase~=2.3.4
 starlette~=0.35.1
+schedule~=1.2.1
