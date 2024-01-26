@@ -14,8 +14,8 @@ jobs:
 
     - name: Build and run Docker container
       run: |
-        docker-compose build
-        docker-compose up -d
+        docker-compose -f docker/docker-compose.yml build
+        docker-compose -f docker/docker-compose.yml up -d
 
     - name: Check if Docker containers are running
       run: |
