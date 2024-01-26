@@ -25,10 +25,23 @@ pip install -r requirements.txt
 
 ## 🚀 Running the Application
 
+### 💻 Running the application locally
+
 You can run the application using the following command:
 
 ```bash
 uvicorn main:app --reload
+```
+
+The application will be available at `http://localhost:8000`.
+
+### 🐳 Running the application with Docker
+
+Alternatively, you can run the application using the following command:
+
+```bash
+docker-compose build
+docker-compose up
 ```
 
 The application will be available at `http://localhost:8000`.
