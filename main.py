@@ -99,4 +99,4 @@ async def speed_log():
     """Speed log route"""
 
     # Get speed log
-    return speed_log, 200
+    return get_speed(), 200
