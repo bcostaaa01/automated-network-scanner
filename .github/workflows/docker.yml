@@ -1,0 +1,27 @@
+name: Docker Build and Test
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Build and run Docker container
+      run: |
+        docker-compose build
+        docker-compose up -d
+
+    - name: Check if Docker containers are running
+      run: |
+        if docker ps | grep -q 'app'; then
+          echo "Docker containers are running."
+        else
+          echo "Docker containers are not running." && exit 1
+        fi
