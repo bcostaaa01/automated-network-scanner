@@ -1,8 +1,5 @@
 # Main FastAPI application
 # --------------------------------------
-import os
-
-import schedule
 # Imports
 # --------------------------------------
 from fastapi import FastAPI
@@ -14,6 +11,7 @@ import xml.etree.ElementTree as ET
 from starlette.responses import FileResponse
 import os
 import schedule
+import uvicorn
 
 
 # --------------------------------------
@@ -119,3 +117,10 @@ def job():
 
 schedule.every(10).minutes.do(job)
 schedule.every().day.at("23:59").do(job)
+
+
+# --------------------------------------
+# Main
+# --------------------------------------
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=80)

@@ -3,11 +3,11 @@ version: '3.7'
 services:
   app:
     build:
-      context: ..
+      context: ../
       dockerfile: docker/Dockerfile
 
     ports:
       - "80:80"
     volumes:
-      - .:/app
-    command: ["python", "main.py"]
+      - .:/automated-network-scan
+    command: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
